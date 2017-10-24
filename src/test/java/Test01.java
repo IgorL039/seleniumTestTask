@@ -33,15 +33,15 @@ public class Test01 {
         d.get("http://www.wiley.com/WileyCDA/");
         List<WebElement> links = d.findElements(By.xpath("//div[@id='links-site']/ul/li/a"));
 
-        List<String> linkNames=new ArrayList<String>();
+        List<String> linkNames = new ArrayList<String>();
         linkNames.add("");
 
         boolean isDispl = true;
         for (WebElement l : links) {
             isDispl &= l.isDisplayed();
         }
-        assertEquals(true,isDispl);
-
+        assertEquals(true, isDispl);
+        ///newnew
         d.quit();
     }
 }
