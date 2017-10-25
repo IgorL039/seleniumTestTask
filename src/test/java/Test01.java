@@ -102,7 +102,7 @@ public class Test01 {
 
         boolean flag = els.get(0).getCssValue("font-color").equals(studentEl.getCssValue("font-color"));
 
-        studentEl.findElement(By);
+        //studentEl.findElement(By);
         //if (flag)
 //не доделан!!
         assertEquals(true, flag);
