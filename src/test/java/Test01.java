@@ -12,12 +12,24 @@ import static junit.framework.TestCase.assertEquals;
 
 
 public class Test01 {
+    private WebDriver _driver;
+
+    private WebDriver openWileyHomePage() {
+        _driver = new ChromeDriver();
+        _driver.get("http://www.wiley.com/WileyCDA/");
+        return _driver;
+    }
+
+    private WebDriver openWileyHomePage(String s) {
+        _driver = new ChromeDriver();
+        _driver.get("http://www.wiley.com/WileyCDA/" + s);
+        return _driver;
+    }
 
     @Test
     public void Action1() {
-        WebDriver driver = new ChromeDriver();
         //Open http://www.wiley.com/WileyCDA/
-        driver.get("http://www.wiley.com/WileyCDA/");
+        WebDriver driver = openWileyHomePage();
         List<WebElement> links = driver.findElements(By.xpath("//div[@id='links-site']/ul/li/a"));
         //Check the following links displayed in top navigation menu "Home" "Subjects" "About" "Wiley" "Contact Us" "Help"
         List<String> linkNames = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
@@ -35,9 +47,8 @@ public class Test01 {
 
     @Test
     public void Action2() {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = openWileyHomePage();
         //Check items under Resources sub-header
-        driver.get("http://www.wiley.com/WileyCDA/");
         List<WebElement> links = driver.findElements(By.xpath("//div[@id='homepage-links']/ul/li/a"));
         List<String> linkNames = Arrays.asList("Students", "Authors", "Instructors",
                 "Librarians", "Societies", "Conferences",
@@ -57,9 +68,8 @@ public class Test01 {
 
     @Test
     public void Action3() {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = openWileyHomePage("Section/id-404702.html");
         //Check that http://www.wiley.com/WileyCDA/Section/id-404702.html url is opened
-        driver.get("http://www.wiley.com/WileyCDA/Section/id-404702.html");
         WebElement headerStudents = driver.findElement(By.xpath("//div[@id='page-title']/h1"));
         //Check that “Students” header is displayed
         assertEquals("Header " + headerStudents.getText() + " is not displayed", true, headerStudents.isDisplayed());
@@ -70,8 +80,7 @@ public class Test01 {
 
     @Test
     public void Action4() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/Section/id-404702.html");
+        WebDriver driver = openWileyHomePage("Section/id-404702.html");
         //Check “Resources For” menu on the left
         List<WebElement> links = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li[@class='autonavItem']/a"));
         links.add(driver.findElement(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li/span")));
@@ -92,8 +101,7 @@ public class Test01 {
 
     @Test
     public void Action5() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/Section/id-404702.html");
+        WebDriver driver = openWileyHomePage("Section/id-404702.html");
         List<WebElement> elements = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li"));
         WebElement studentElement = driver.findElement(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li[@class='active autonavItem parent']/span"));
         //Check “Students” item is selected
@@ -111,8 +119,7 @@ public class Test01 {
 
     @Test
     public void Action6() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/Section/id-404702.html");
+        WebDriver driver = openWileyHomePage("Section/id-404702.html");
         //Click “Home” link at the top navigation menu
         WebElement homeElement = driver.findElement(By.xpath("//div[@id='links-site']/ul/li/a[contains(., 'Home')]"));
         homeElement.click();
@@ -122,8 +129,7 @@ public class Test01 {
 
     @Test
     public void Action7() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://eu.wiley.com/WileyCDA/");
+        WebDriver driver = openWileyHomePage();
         //Find “Sign up to receive Wiley updates” line and input field next to it. Do not enter anything and click arrow button
         WebElement buttonElement = driver.findElement(By.xpath("//button[@id='id31']"));
         buttonElement.click();
@@ -136,8 +142,7 @@ public class Test01 {
 
     @Test
     public void Action8() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://eu.wiley.com/WileyCDA/");
+        WebDriver driver = openWileyHomePage();
 
         WebElement inputElement = driver.findElement(By.xpath("//input[@id='EmailAddress']"));
         //Enter invalid email (for example without @)
@@ -154,8 +159,7 @@ public class Test01 {
 
     @Test
     public void Action9() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://eu.wiley.com/WileyCDA/");
+        WebDriver driver = openWileyHomePage();
 
         //Find search input in the top of the page. Enter “for dummies” to the input field and press search icon next to the input field.
         WebElement inputElement = driver.findElement(By.xpath("//input[@id='query']"));
@@ -173,8 +177,7 @@ public class Test01 {
 
     @Test
     public void Action10() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://eu.wiley.com/WileyCDA/");
+        WebDriver driver = openWileyHomePage();
 
         WebElement inputElement = driver.findElement(By.xpath("//input[@id='query']"));
         inputElement.sendKeys("for dummies");
@@ -206,9 +209,8 @@ public class Test01 {
 
     @Test
     public void Action12() {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = openWileyHomePage();
         WebDriverWait wait = new WebDriverWait(driver, 5);
-        driver.get("http://eu.wiley.com/WileyCDA/");
         //Click “Institutions” icon under Resources sub-header
         WebElement elementInstitutions = driver.findElement(By.xpath("//div[@id='homepage-links']/ul/li[@class='resource-institutions']"));
         elementInstitutions.click();
