@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -8,8 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static junit.framework.TestCase.assertEquals;
 
 public class Action8 {
-    private static final String INPUT_ELEMENT_X_PATH = "//input[@id='EmailAddress']";
-    private static final String BUTTON_ELEMENT_X_PATH = "//button[@id='id31']";
+    private static final String INPUT_ELEMENT_XPATH = "//input[@id='EmailAddress']";
+    private static final String BUTTON_ELEMENT_XPATH = "//button[@id='id31']";
     private WebDriver driver;
 
     private WebDriver openWileyPage() {
@@ -22,16 +23,20 @@ public class Action8 {
     public void Action8() {
         WebDriver driver = openWileyPage();
 
-        WebElement inputElement = driver.findElement(By.xpath(INPUT_ELEMENT_X_PATH));
+        WebElement inputElement = driver.findElement(By.xpath(INPUT_ELEMENT_XPATH));
         //Enter invalid email (for example without @)
         inputElement.sendKeys("mail.mail.ru");
 
-        WebElement buttonElement = driver.findElement(By.xpath(BUTTON_ELEMENT_X_PATH));
+        WebElement buttonElement = driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH));
         buttonElement.click();
         //Check that alert appeared
         Alert alert = driver.switchTo().alert();
         //Check that alert text is “Invalid email address.”
         assertEquals("Invalid email address.", alert.getText());
+    }
+
+    @After
+    public void CloseBrowser() {
         driver.quit();
     }
 }
