@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,19 +12,18 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 
 public class Action5 {
+    private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/Section/id-404702.html";
     private static final String RESOURCES_FOR_MENU_ELEMENTS_XPATH = "//div[@id='sidebar']/div/ul/li/ul/li";
     private static final String STUDENT_ELEMENT_XPATH = "//div[@id='sidebar']/div/ul/li/ul/li[@class='active autonavItem parent']/span";
-    private WebDriver driver;
+    private WebDriver driver = new ChromeDriver();
 
-    private WebDriver openWileyPage() {
-        driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/Section/id-404702.html");
-        return driver;
+    @Before
+    public void openWileyPage() {
+        driver.get(TEST_PAGE_URL);
     }
 
     @Test
     public void Action5() {
-        WebDriver driver = openWileyPage();
         List<WebElement> resourcesForMenuElements = driver.findElements(By.xpath(RESOURCES_FOR_MENU_ELEMENTS_XPATH));
         WebElement studentElement = driver.findElement(By.xpath(STUDENT_ELEMENT_XPATH));
         //Check “Students” item is selected

@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,18 +13,17 @@ import java.util.ArrayList;
 import static junit.framework.TestCase.assertEquals;
 
 public class Action12 {
+    private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String ELEMENT_INSTITUTIONS_XPATH = "//div[@id='homepage-links']/ul/li[@class='resource-institutions']";
-    private WebDriver driver;
+    private WebDriver driver = new ChromeDriver();
 
-    private WebDriver openWileyPage() {
-        driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/");
-        return driver;
+    @Before
+    public void openWileyPage() {
+        driver.get(TEST_PAGE_URL);
     }
 
     @Test
     public void Action12() {
-        WebDriver driver = openWileyPage();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         //Click “Institutions” icon under Resources sub-header
         WebElement elementInstitutions = driver.findElement(By.xpath(ELEMENT_INSTITUTIONS_XPATH));

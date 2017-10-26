@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -9,18 +10,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static junit.framework.TestCase.assertEquals;
 
 public class Action7 {
+    private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String BUTTON_ELEMENT_XPATH = "//button[@id='id31']";
-    private WebDriver driver;
+    private WebDriver driver = new ChromeDriver();
 
-    private WebDriver openWileyPage() {
-        driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/");
-        return driver;
+    @Before
+    public void openWileyPage() {
+        driver.get(TEST_PAGE_URL);
     }
 
     @Test
     public void Action7() {
-        WebDriver driver = openWileyPage();
         //Find “Sign up to receive Wiley updates” line and input field next to it. Do not enter anything and click arrow button
         WebElement buttonElement = driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH));
         buttonElement.click();

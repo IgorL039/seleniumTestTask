@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,23 +12,21 @@ import java.util.Random;
 import static junit.framework.TestCase.assertEquals;
 
 public class Action10 {
+    private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String INPUT_ELEMENT_XPATH = "//input[@id='query']";
     private static final String BUTTON_ELEMENT_XPATH = "//input[@class='icon icon__search search-form-submit']";
     private static final String LIST_OF_ITEMS_XPATH = "//div[@id='search-results']/div[@class='product-listing size100']";
     private static final String HEADER_XPATH = "//h1[@class='productDetail-title']";
     private static final String ITEM_ELEMENT_LINK_XPATH = "div[@class='product-title']/a";
-    private WebDriver driver;
+    private WebDriver driver = new ChromeDriver();
 
-    private WebDriver openWileyPage() {
-        driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/");
-        return driver;
+    @Before
+    public void openWileyPage() {
+        driver.get(TEST_PAGE_URL);
     }
 
     @Test
     public void Action10() {
-        WebDriver driver = openWileyPage();
-
         WebElement inputElement = driver.findElement(By.xpath(INPUT_ELEMENT_XPATH));
         inputElement.sendKeys("for dummies");
 

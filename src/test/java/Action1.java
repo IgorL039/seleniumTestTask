@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,20 +12,19 @@ import java.util.List;
 import static junit.framework.Assert.assertTrue;
 
 public class Action1 {
+    private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String TOP_NAVIGATION_MENU_LINKS_XPATH = "//div[@id='links-site']/ul/li/a";
     private List<String> linkNames = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
-    private WebDriver driver;
+    private WebDriver driver = new ChromeDriver();
 
-    private WebDriver openWileyPage() {
-        driver = new ChromeDriver();
-        driver.get("http://www.wiley.com/WileyCDA/");
-        return driver;
+    @Before
+    public void openWileyPage() {
+        driver.get(TEST_PAGE_URL);
     }
 
     @Test
     public void Action1() {
         //Open http://www.wiley.com/WileyCDA/
-        WebDriver driver = openWileyPage();
         List<WebElement> topNavigationMenuLinks = driver.findElements(By.xpath(TOP_NAVIGATION_MENU_LINKS_XPATH));
         //Check the following links displayed in top navigation menu "Home" "Subjects" "About" "Wiley" "Contact Us" "Help"
         for (WebElement link : topNavigationMenuLinks) {
