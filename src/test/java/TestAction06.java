@@ -10,7 +10,8 @@ public class TestAction06 extends CommonTestMethods {
 
     @Test
     public void TestAction06() {
-        getStudentSectionHomePage().clickHomeElement();
+        getStudentSectionHomePage()
+                .clickHomeElement();
     }
 
     @After

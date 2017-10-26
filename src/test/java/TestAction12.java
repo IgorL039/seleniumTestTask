@@ -10,7 +10,10 @@ public class TestAction12 extends CommonTestMethods {
 
     @Test
     public void TestAction12() {
-        getHomePage().clickInstitutionElement().SwitchToNewOpenedTab().checkPageUrl();
+        getHomePage()
+                .clickInstitutionElement()
+                .SwitchToNewOpenedTab()
+                .checkPageUrl();
     }
 
     @After

@@ -10,7 +10,9 @@ public class TestAction03 extends CommonTestMethods {
 
     @Test
     public void TestAction03() {
-        getStudentSectionHomePage().checkStudentsHeaderIsDisplayed().checkStudentsHeaderHasText();
+        getStudentSectionHomePage()
+                .checkStudentsHeaderIsDisplayed()
+                .checkStudentsHeaderHasText();
     }
 
     @After

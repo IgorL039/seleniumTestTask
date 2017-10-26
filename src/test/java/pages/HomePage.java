@@ -13,16 +13,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class HomePage {
-    private static final By  RESOURCES_SUB_HEADER_ELEMENTS_XPATH = By.xpath("//div[@id='homepage-links']/ul/li/a");
-    private static final By  RESOURCES_BAR_INSTITUTIONS_ELEMENT_XPATH = By.xpath("//div[@id='homepage-links']/ul/li[@class='resource-institutions']");
-    private static final By  SIGN_UP_TO_RECEIVE_SUBMIT_BUTTON_XPATH = By.xpath("//button[@id='id31']");
-    private static final By  SIGN_UP_TO_RECEIVE_INPUT_ELEMENT_XPATH = By.xpath("//input[@id='EmailAddress']");
-    private static final By  SEARCH_INPUT_ELEMENT_XPATH = By.xpath("//input[@id='query']");
-    private static final By  SEARCH_SUBMIT_BUTTON_XPATH = By.xpath("//input[@class='icon icon__search search-form-submit']");
-    private static final By  PRODUCT_LIST_OF_ITEMS_XPATH = By.xpath("//div[@id='search-results']/div[@class='product-listing size100']");
-    private static final By  PRODUCT_PAGE_HEADER_XPATH = By.xpath("//h1[@class='productDetail-title']");
-    private static final By  PRODUCT_ITEM_INFORMATION_LINK_XPATH = By.xpath("div[@class='product-title']/a");
-    private static final By  TOP_NAV_HOME_ELEMENT_XPATH = By.xpath("//div[@id='links-site']/ul/li/a[contains(., 'Home')]");
+    private static final By RESOURCES_SUB_HEADER_ELEMENTS_XPATH = By.xpath("//div[@id='homepage-links']/ul/li/a");
+    private static final By RESOURCES_BAR_INSTITUTIONS_ELEMENT_XPATH = By.xpath("//div[@id='homepage-links']/ul/li[@class='resource-institutions']");
+    private static final By SIGN_UP_TO_RECEIVE_SUBMIT_BUTTON_XPATH = By.xpath("//button[@id='id31']");
+    private static final By SIGN_UP_TO_RECEIVE_INPUT_ELEMENT_XPATH = By.xpath("//input[@id='EmailAddress']");
+    private static final By SEARCH_INPUT_ELEMENT_XPATH = By.xpath("//input[@id='query']");
+    private static final By SEARCH_SUBMIT_BUTTON_XPATH = By.xpath("//input[@class='icon icon__search search-form-submit']");
+    private static final By PRODUCT_LIST_OF_ITEMS_XPATH = By.xpath("//div[@id='search-results']/div[@class='product-listing size100']");
+    private static final By PRODUCT_PAGE_HEADER_XPATH = By.xpath("//h1[@class='productDetail-title']");
+    private static final By PRODUCT_ITEM_INFORMATION_LINK_XPATH = By.xpath("div[@class='product-title']/a");
+    private static final By TOP_NAV_HOME_ELEMENT_XPATH = By.xpath("//div[@id='links-site']/ul/li/a[contains(., 'Home')]");
     private static final List TOP_NAV_LINK_NAMES = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
     private static final List RESOURCES_BAR_ELEMENT_NAMES = Arrays.asList("Students", "Authors", "Instructors", "Librarians", "Societies", "Conferences",
             "Booksellers", "Corporations", "Institutions");
@@ -86,10 +86,6 @@ public class HomePage {
         return this;
     }
 
-    private WebElement getSignUpToReceiveInputElement() {
-        return driver.findElement(SIGN_UP_TO_RECEIVE_INPUT_ELEMENT_XPATH);
-    }
-
     public HomePage enterTextIntoSearchInputElement() {
         getIntoSearchInputElement().sendKeys("for dummies");
         return this;
@@ -135,6 +131,10 @@ public class HomePage {
     public HomePage checkPageUrl() {
         assertEquals("https://edservices.wiley.com/", driver.getCurrentUrl());
         return this;
+    }
+
+    private WebElement getSignUpToReceiveInputElement() {
+        return driver.findElement(SIGN_UP_TO_RECEIVE_INPUT_ELEMENT_XPATH);
     }
 
     private WebElement getIntoSearchInputElement() {

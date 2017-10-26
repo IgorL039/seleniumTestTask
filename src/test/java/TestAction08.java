@@ -10,8 +10,10 @@ public class TestAction08 extends CommonTestMethods {
 
     @Test
     public void TestAction08() {
-        getHomePage().enterTextIntoSignUpToReceiveInputElement().clickArrowButton().checkAlertAppearance().
-                checkAlertTextMessage("Invalid email address.");
+        getHomePage()
+                .enterTextIntoSignUpToReceiveInputElement()
+                .clickArrowButton().checkAlertAppearance()
+                .checkAlertTextMessage("Invalid email address.");
     }
 
     @After

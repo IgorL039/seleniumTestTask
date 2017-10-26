@@ -10,7 +10,9 @@ public class TestAction02 extends CommonTestMethods {
 
     @Test
     public void TestAction02() {
-        getHomePage().checkNumberOfResourcesSubHeaderLinks().checkResourcesSubHeaderLinksAreDisplayed()
+        getHomePage()
+                .checkNumberOfResourcesSubHeaderLinks()
+                .checkResourcesSubHeaderLinksAreDisplayed()
                 .checkResourcesSubHeaderLinksHaveText();
     }
 

@@ -10,7 +10,9 @@ public class TestAction05 extends CommonTestMethods {
 
     @Test
     public void TestAction05() {
-        getStudentSectionHomePage().checkStudentElementStyle().checkStudentElementIsNotClickable();
+        getStudentSectionHomePage()
+                .checkStudentElementStyle()
+                .checkStudentElementIsNotClickable();
     }
 
     @After

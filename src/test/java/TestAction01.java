@@ -10,7 +10,9 @@ public class TestAction01 extends CommonTestMethods {
 
     @Test
     public void TestAction01() {
-        getHomePage().checkTopMenuLinksAreDisplayed().checkTopMenuLinksHaveText();
+        getHomePage()
+                .checkTopMenuLinksAreDisplayed()
+                .checkTopMenuLinksHaveText();
     }
 
     @After

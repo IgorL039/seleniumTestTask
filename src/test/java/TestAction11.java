@@ -10,7 +10,8 @@ public class TestAction11 extends CommonTestMethods {
 
     @Test
     public void TestAction11() {
-        getHomePage().clickHomeElement();
+        getHomePage()
+                .clickHomeElement();
     }
 
     @After

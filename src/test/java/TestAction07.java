@@ -10,7 +10,10 @@ public class TestAction07 extends CommonTestMethods {
 
     @Test
     public void TestAction07() {
-        getHomePage().clickArrowButton().checkAlertAppearance().checkAlertTextMessage("Please enter email address");
+        getHomePage()
+                .clickArrowButton()
+                .checkAlertAppearance()
+                .checkAlertTextMessage("Please enter email address");
     }
 
     @After

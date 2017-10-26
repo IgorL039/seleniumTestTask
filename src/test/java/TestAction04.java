@@ -10,7 +10,9 @@ public class TestAction04 extends CommonTestMethods {
 
     @Test
     public void TestAction04() {
-        getStudentSectionHomePage().checkNumberOfResourcesForMenuLinks().checkResourcesForMenuLinksAreDisplayed();
+        getStudentSectionHomePage()
+                .checkNumberOfResourcesForMenuLinks()
+                .checkResourcesForMenuLinksAreDisplayed();
     }
 
     @After

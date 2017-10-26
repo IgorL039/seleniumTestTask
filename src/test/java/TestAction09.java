@@ -10,7 +10,10 @@ public class TestAction09 extends CommonTestMethods {
 
     @Test
     public void TestAction09() {
-        getHomePage().enterTextIntoSearchInputElement().clickLoupeButton().checkItemListAppearance();
+        getHomePage()
+                .enterTextIntoSearchInputElement()
+                .clickLoupeButton()
+                .checkItemListAppearance();
     }
 
     @After
