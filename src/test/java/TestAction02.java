@@ -9,10 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class Action2 {
+public class TestAction02 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String RESOURCES_SUB_HEADER_LINKS_XPATH = "//div[@id='homepage-links']/ul/li/a";
     private List<String> linkNames = Arrays.asList("Students", "Authors", "Instructors", "Librarians", "Societies", "Conferences",
@@ -25,10 +25,9 @@ public class Action2 {
     }
 
     @Test
-    public void Action2() {
+    public void TestAction02() {
         //Check items under Resources sub-header
         List<WebElement> resourcesSubHeaderLinks = driver.findElements(By.xpath(RESOURCES_SUB_HEADER_LINKS_XPATH));
-
         //There are 9 items under resources sub-header
         checkNumberOfLinks(resourcesSubHeaderLinks, linkNames.size());
         //Titles are 'Students', 'Authors', 'Instructors', 'Librarians', 'Societies', 'Conferences', 'Booksellers', 'Corporations', 'Institutions'
@@ -43,8 +42,8 @@ public class Action2 {
         driver.quit();
     }
 
-    private void checkNumberOfLinks(List<WebElement> resourcesSubHeaderLinks, int i) {
-        assertEquals("The number of links is equal " + resourcesSubHeaderLinks.size() + ", not " + i, i, resourcesSubHeaderLinks.size());
+    private void checkNumberOfLinks(List<WebElement> links, int i) {
+        assertEquals("The number of links is equal " + links.size() + ", not " + i, i, links.size());
     }
 
     private void checkLinkHasText(WebElement link) {

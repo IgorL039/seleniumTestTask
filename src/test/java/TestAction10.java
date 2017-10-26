@@ -9,9 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.List;
 import java.util.Random;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-public class Action10 {
+public class TestAction10 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String INPUT_ELEMENT_XPATH = "//input[@id='query']";
     private static final String BUTTON_ELEMENT_XPATH = "//input[@class='icon icon__search search-form-submit']";
@@ -26,25 +26,21 @@ public class Action10 {
     }
 
     @Test
-    public void Action10() {
-        WebElement inputElement = driver.findElement(By.xpath(INPUT_ELEMENT_XPATH));
-        inputElement.sendKeys("for dummies");
-
-        WebElement buttonElement = driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH));
-        buttonElement.click();
-
+    public void TestAction10() {
+        driver.findElement(By.xpath(INPUT_ELEMENT_XPATH)).sendKeys("for dummies");
+        driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH)).click();
         List<WebElement> list = driver.findElements(By.xpath(LIST_OF_ITEMS_XPATH));
 
         //Click random item link (link with book title)
         Random rn = new Random();
         int rnd = rn.nextInt(list.size());
 
-        WebElement itemElementLink = list.get(rnd).findElement(By.xpath(ITEM_ELEMENT_LINK_XPATH));
-        String linkTxt = itemElementLink.getText();
-        itemElementLink.click();
+        WebElement randomItemLinkElement = list.get(rnd).findElement(By.xpath(ITEM_ELEMENT_LINK_XPATH));
+        String linkTxt = randomItemLinkElement.getText();
+        randomItemLinkElement.click();
         //Check that page with header equal to the title you clicked is displayed
         WebElement header = driver.findElement(By.xpath(HEADER_XPATH));
-        assertEquals(linkTxt, header.getText());
+        assertEquals("Item header text is not equal item page title.", linkTxt, header.getText());
     }
 
     @After

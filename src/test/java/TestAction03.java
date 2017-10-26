@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class Action3 {
+public class TestAction03 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/Section/id-404702.html";
     private static final String STUDENTS_HEADER_XPATH = "//div[@id='page-title']/h1";
     private WebDriver driver = new ChromeDriver();
@@ -20,7 +20,7 @@ public class Action3 {
     }
 
     @Test
-    public void Action3() {
+    public void TestAction03() {
         //Check that http://www.wiley.com/WileyCDA/Section/id-404702.html url is opened
         WebElement studentsHeader = driver.findElement(By.xpath(STUDENTS_HEADER_XPATH));
         //Check that “Students” header is displayed

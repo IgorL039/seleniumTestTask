@@ -8,10 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class Action5 {
+public class TestAction05 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/Section/id-404702.html";
     private static final String RESOURCES_FOR_MENU_ELEMENTS_XPATH = "//div[@id='sidebar']/div/ul/li/ul/li";
     private static final String STUDENT_ELEMENT_XPATH = "//div[@id='sidebar']/div/ul/li/ul/li[@class='active autonavItem parent']/span";
@@ -23,18 +23,16 @@ public class Action5 {
     }
 
     @Test
-    public void Action5() {
+    public void TestAction05() {
         List<WebElement> resourcesForMenuElements = driver.findElements(By.xpath(RESOURCES_FOR_MENU_ELEMENTS_XPATH));
         WebElement studentElement = driver.findElement(By.xpath(STUDENT_ELEMENT_XPATH));
         //Check “Students” item is selected
         //“Students” item has different style
         assertFalse("'Students' item has the same style", resourcesForMenuElements.get(0).getCssValue("color").equals(studentElement.getCssValue("font-color")));
-
         //“Students” item is not clickable
         String pageUrl = driver.getCurrentUrl();
         studentElement.click();
-//        new WebDriverWait(driver, 5);
-        assertEquals("The click on 'Students' item changes page url", true, pageUrl.equals(driver.getCurrentUrl()));
+        assertTrue("The click on 'Students' item changes page url", pageUrl.equals(driver.getCurrentUrl()));
     }
 
     @After

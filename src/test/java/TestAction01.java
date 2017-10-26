@@ -9,9 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
-public class Action1 {
+public class TestAction01 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String TOP_NAVIGATION_MENU_LINKS_XPATH = "//div[@id='links-site']/ul/li/a";
     private List<String> linkNames = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
@@ -23,7 +23,7 @@ public class Action1 {
     }
 
     @Test
-    public void Action1() {
+    public void TestAction01() {
         //Open http://www.wiley.com/WileyCDA/
         List<WebElement> topNavigationMenuLinks = driver.findElements(By.xpath(TOP_NAVIGATION_MENU_LINKS_XPATH));
         //Check the following links displayed in top navigation menu "Home" "Subjects" "About" "Wiley" "Contact Us" "Help"

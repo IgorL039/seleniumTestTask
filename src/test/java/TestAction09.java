@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class Action9 {
+public class TestAction09 {
     private static final String TEST_PAGE_URL = "http://www.wiley.com/WileyCDA/";
     private static final String INPUT_ELEMENT_XPATH = "//input[@id='query']";
     private static final String BUTTON_ELEMENT_XPATH = "//input[@class='icon icon__search search-form-submit']";
@@ -23,13 +23,10 @@ public class Action9 {
     }
 
     @Test
-    public void Action9() {
+    public void TestAction09() {
         //Find search input in the top of the page. Enter “for dummies” to the input field and press search icon next to the input field.
-        WebElement inputElement = driver.findElement(By.xpath(INPUT_ELEMENT_XPATH));
-        inputElement.sendKeys("for dummies");
-
-        WebElement buttonElement = driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH));
-        buttonElement.click();
+        driver.findElement(By.xpath(INPUT_ELEMENT_XPATH)).sendKeys("for dummies");
+        driver.findElement(By.xpath(BUTTON_ELEMENT_XPATH)).click();
 
         //Check that list of items appeared
         List<WebElement> list = driver.findElements(By.xpath(LIST_OF_ITEMS_XPATH));
