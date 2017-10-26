@@ -22,10 +22,12 @@ public class HomePage {
     private static final By PRODUCT_LIST_OF_ITEMS_XPATH = By.xpath("//div[@id='search-results']/div[@class='product-listing size100']");
     private static final By PRODUCT_PAGE_HEADER_XPATH = By.xpath("//h1[@class='productDetail-title']");
     private static final By PRODUCT_ITEM_INFORMATION_LINK_XPATH = By.xpath("div[@class='product-title']/a");
+    private static final By TOP_NAV_ELEMENTS_XPATH = By.xpath("//div[@id='links-site']/ul/li/a");
     private static final By TOP_NAV_HOME_ELEMENT_XPATH = By.xpath("//div[@id='links-site']/ul/li/a[contains(., 'Home')]");
     private static final List TOP_NAV_LINK_NAMES = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
     private static final List RESOURCES_BAR_ELEMENT_NAMES = Arrays.asList("Students", "Authors", "Instructors", "Librarians", "Societies", "Conferences",
             "Booksellers", "Corporations", "Institutions");
+
     private final WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -172,7 +174,7 @@ public class HomePage {
     }
 
     private List<WebElement> getLinksElements() {
-        return driver.findElements(By.xpath("//div[@id='links-site']/ul/li/a"));
+        return driver.findElements(TOP_NAV_ELEMENTS_XPATH);
     }
 
     private List<WebElement> getResourcesSubHeaderLinks() {
