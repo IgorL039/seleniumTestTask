@@ -36,7 +36,6 @@ public class Test01 {
         //Check the following links displayed in top navigation menu "Home" "Subjects" "About" "Wiley" "Contact Us" "Help"
         List<String> linkNames = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
 
-//        boolean flag = true;
         for (WebElement link : topNavigationMenuLinks) {
             assertTrue("Link " + link.getText() + " is not displayed", link.isDisplayed());
             assertTrue("Link text " + link.getText() + " is not contain among " +
