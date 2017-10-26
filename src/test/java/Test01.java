@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 
 
@@ -30,16 +32,16 @@ public class Test01 {
     public void Action1() {
         //Open http://www.wiley.com/WileyCDA/
         WebDriver driver = openWileyHomePage();
-        List<WebElement> links = driver.findElements(By.xpath("//div[@id='links-site']/ul/li/a"));
+        List<WebElement> topNavigationMenuLinks = driver.findElements(By.xpath("//div[@id='links-site']/ul/li/a"));
         //Check the following links displayed in top navigation menu "Home" "Subjects" "About" "Wiley" "Contact Us" "Help"
         List<String> linkNames = Arrays.asList("Home", "Subjects", "About Wiley", "Contact Us", "Help");
 
-        boolean flag = true;
-        for (WebElement link : links) {
-            assertEquals("Link " + link.getText() + " is not displayed", true, link.isDisplayed());
-            assertEquals("Link text " + link.getText() + " is not contain among " +
-                            "titles \"Home\" \"Subjects\" \"About\" \"Wiley\" \"Contact Us\" \"Help\"",
-                    true, linkNames.contains(link.getText()));
+//        boolean flag = true;
+        for (WebElement link : topNavigationMenuLinks) {
+            assertTrue("Link " + link.getText() + " is not displayed", link.isDisplayed());
+            assertTrue("Link text " + link.getText() + " is not contain among " +
+                            "titles 'Home' 'Subjects' 'About' 'Wiley' 'Contact Us' 'Help'",
+                    linkNames.contains(link.getText()));
         }
 
         driver.quit();
@@ -49,18 +51,18 @@ public class Test01 {
     public void Action2() {
         WebDriver driver = openWileyHomePage();
         //Check items under Resources sub-header
-        List<WebElement> links = driver.findElements(By.xpath("//div[@id='homepage-links']/ul/li/a"));
+        List<WebElement> resourcesSubheaderLinks = driver.findElements(By.xpath("//div[@id='homepage-links']/ul/li/a"));
         List<String> linkNames = Arrays.asList("Students", "Authors", "Instructors",
                 "Librarians", "Societies", "Conferences",
                 "Booksellers", "Corporations", "Institutions");
         //There are 9 items under resources sub-header
-        assertEquals("The number of links is equal " + links.size() + ", not 9", 9, links.size());
-        //Titles are “Students”, “Authors”, “Instructors”, “Librarians”, “Societies”, “Conferences”, “Booksellers”, “Corporations”, “Institutions”
-        for (WebElement link : links) {
-            assertEquals("Link " + link.getText() + " is not displayed", true, link.isDisplayed());
-            assertEquals("Link text " + link.getText() + " is not contain among " +
-                            "titles “Students”, “Authors”, “Instructors”, “Librarians”, “Societies”, “Conferences”, “Booksellers”, “Corporations”, “Institutions”",
-                    true, linkNames.contains(link.getText()));
+        assertEquals("The number of links is equal " + resourcesSubheaderLinks.size() + ", not 9", 9, resourcesSubheaderLinks.size());
+        //Titles are 'Students', 'Authors', 'Instructors', 'Librarians', 'Societies', 'Conferences', 'Booksellers', 'Corporations', 'Institutions'
+        for (WebElement link : resourcesSubheaderLinks) {
+            assertTrue("Link " + link.getText() + " is not displayed", link.isDisplayed());
+            assertTrue("Link text " + link.getText() + " is not contain among " +
+                            "titles 'Students', 'Authors', 'Instructors', 'Librarians', 'Societies', 'Conferences', 'Booksellers', 'Corporations', 'Institutions'",
+                    linkNames.contains(link.getText()));
         }
 
         driver.quit();
@@ -72,8 +74,8 @@ public class Test01 {
         //Check that http://www.wiley.com/WileyCDA/Section/id-404702.html url is opened
         WebElement headerStudents = driver.findElement(By.xpath("//div[@id='page-title']/h1"));
         //Check that “Students” header is displayed
-        assertEquals("Header " + headerStudents.getText() + " is not displayed", true, headerStudents.isDisplayed());
-        assertEquals("Header Students tex is not \"Students\"", "Students", headerStudents.getText());
+        assertTrue("Header " + headerStudents.getText() + " is not displayed", headerStudents.isDisplayed());
+        assertEquals("Students", headerStudents.getText());
 
         driver.quit();
     }
@@ -82,38 +84,35 @@ public class Test01 {
     public void Action4() {
         WebDriver driver = openWileyHomePage("Section/id-404702.html");
         //Check “Resources For” menu on the left
-        List<WebElement> links = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li[@class='autonavItem']/a"));
-        links.add(driver.findElement(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li/span")));
+        List<WebElement> resourcesForMenuLinks = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li[@class='autonavItem']/a"));
+        resourcesForMenuLinks.add(driver.findElement(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li/span")));
 
-        List<String> linkNames = Arrays.asList("Authors", "Librarians", "Booksellers",
-                "Instructors", "Students", /*"Government Employees",*/
-                "Societies", "Corporate Partners");
+        List<String> linkNames = Arrays.asList("Authors", "Librarians", "Booksellers", "Instructors",
+                "Students", /*"Government Employees",*/ "Societies", "Corporate Partners");
         //8 items are displayed in the menu, but 7 (There is not "Government Employees" on “Resources For” menu)
         //Items are “Authorts”, “Librarians”, “Booksellers”, “Instructors”, “Students” , “Societies”, “Corporate Partners”
-        assertEquals("The number of links is equal " + links.size() + ", not 7", 7, links.size());
+        assertEquals("The number of links is equal " + resourcesForMenuLinks.size() + ", not 7", 7, resourcesForMenuLinks.size());
 
-        for (WebElement link : links) {
-            assertEquals("Link " + link.getText() + " is not displayed", true, link.isDisplayed());
+        for (WebElement link : resourcesForMenuLinks) {
+            assertTrue("Link " + link.getText() + " is not displayed", link.isDisplayed());
         }
-
         driver.quit();
     }
 
     @Test
     public void Action5() {
         WebDriver driver = openWileyHomePage("Section/id-404702.html");
-        List<WebElement> elements = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li"));
+        List<WebElement> resourcesForMenuElements = driver.findElements(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li"));
         WebElement studentElement = driver.findElement(By.xpath("//div[@id='sidebar']/div/ul/li/ul/li[@class='active autonavItem parent']/span"));
         //Check “Students” item is selected
         //“Students” item has different style
-        assertEquals("“Students” item has the same style", false, elements.get(0).getCssValue("color").equals(studentElement.getCssValue("font-color")));
+        assertFalse("'Students' item has the same style", resourcesForMenuElements.get(0).getCssValue("color").equals(studentElement.getCssValue("font-color")));
 
         //“Students” item is not clickable
         String pageUrl = driver.getCurrentUrl();
         studentElement.click();
 //        new WebDriverWait(driver, 5);
-        assertEquals("The click on “Students” item changes page url", true, pageUrl.equals(driver.getCurrentUrl()));
-
+        assertEquals("The click on 'Students' item changes page url", true, pageUrl.equals(driver.getCurrentUrl()));
         driver.quit();
     }
 
@@ -123,7 +122,6 @@ public class Test01 {
         //Click “Home” link at the top navigation menu
         WebElement homeElement = driver.findElement(By.xpath("//div[@id='links-site']/ul/li/a[contains(., 'Home')]"));
         homeElement.click();
-
         driver.quit();
     }
 
@@ -136,7 +134,7 @@ public class Test01 {
         //Check that alert appeared
         Alert alert = driver.switchTo().alert();
         //Check that alert text is “Please enter email address”
-        assertEquals("Alert text is not equal \"Please enter email address\"", true, alert.getText().equals("Please enter email address"));
+        assertEquals("Please enter email address", alert.getText());
         driver.quit();
     }
 
@@ -153,7 +151,7 @@ public class Test01 {
         //Check that alert appeared
         Alert alert = driver.switchTo().alert();
         //Check that alert text is “Invalid email address.”
-        assertEquals("Alert text is not equal \"Invalid email address.\"", true, alert.getText().equals("Invalid email address."));
+        assertEquals("Invalid email address.", alert.getText());
         driver.quit();
     }
 
@@ -171,7 +169,6 @@ public class Test01 {
         //Check that list of items appeared
         List<WebElement> list = driver.findElements(By.xpath("//div[@id='search-results']/div[@class='product-listing size100']"));
         assertEquals("List of items didn't appear", true, list.size() > 1);
-
         driver.quit();
     }
 
@@ -196,8 +193,7 @@ public class Test01 {
         link.click();
         //Check that page with header equal to the title you clicked is displayed
         WebElement header = driver.findElement(By.xpath("//h1[@class='productDetail-title']"));
-        assertEquals("Link text is not equal header text", true, header.getText().equals(linkTxt));
-
+        assertEquals(linkTxt, header.getText());
         driver.quit();
     }
 
@@ -218,8 +214,7 @@ public class Test01 {
         wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-
-        assertEquals("New page url is not equal https://edservices.wiley.com/", true, driver.getCurrentUrl().equals("https://edservices.wiley.com/"));
+        assertEquals("https://edservices.wiley.com/", driver.getCurrentUrl());
         driver.quit();
     }
 }
